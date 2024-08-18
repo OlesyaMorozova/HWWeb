@@ -11,11 +11,11 @@ public class BankCardTest {
     @Test
     void orderACardTest() {
         open("http://localhost:9999");
-        SelenideElement form = $("[id=root]");
+        SelenideElement form = $("[action]");
         form.$("[data-test-id=name] input").setValue("Олеся");
         form.$("[data-test-id=phone] input").setValue("+79275555555");
         form.$("[data-test-id=agreement]").click();
         form.$(("button")).click();
-        $(".paragraph").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
     }
 }
